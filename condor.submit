@@ -1,0 +1,20 @@
+universe = container
+executable = run.sh
+arguments = $(PROCESS)
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT_OR_EVICT
+transfer_input_files = run.py, files.txt, /etc/cmsaf-secrets-chown/access_token
+
+log = log
+output = output/out.$(PROCESS)
+error = error/err.$(PROCESS)
+
+container_image = docker://hub.opensciencegrid.org/coffea-casa/cc-dask-alma8:2024.04.05
+
+request_cpus = 10
+request_memory = 3GB
+request_disk = 1GB
+
+queue 50
+#queue 10
